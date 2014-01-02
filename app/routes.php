@@ -11,9 +11,14 @@
 |
 */
 
-Route::get('/', function()
+Route::get('/', array('as' => 'home', function()
 {
-	return View::make('hello');
-});
+	return View::make('home');
+}));
+
+Route::get('about', array('as' => 'about', function()
+{
+	return View::make('about');
+}));
 
 Route::resource('posts', 'PostsController');
