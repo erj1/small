@@ -3,13 +3,19 @@
 class PostsController extends BaseController {
 
 	/**
+   * The layout that should be used for responses.
+   */
+  protected $layout = 'templates.html5bp';
+
+	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-        return View::make('posts.index');
+				// return View::make('posts.index');
+        $this->layout->content = View::make('posts.index');
 	}
 
 	/**
@@ -19,7 +25,7 @@ class PostsController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('posts.create');
+        $this->layout->content = View::make('posts.create');
 	}
 
 	/**
@@ -40,7 +46,7 @@ class PostsController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make('posts.show');
+        $this->layout->content = View::make('posts.show');
 	}
 
 	/**
@@ -51,7 +57,7 @@ class PostsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        return View::make('posts.edit');
+        $this->layout->content = View::make('posts.edit');
 	}
 
 	/**

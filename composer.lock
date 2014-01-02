@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "919da42378a8d4cea9fd000943b880ee",
+    "hash": "900bf07d43a8db82dbf3b60277cacfbb",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -136,6 +136,52 @@
                 "zf2"
             ],
             "time": "2013-12-04 14:19:30"
+        },
+        {
+            "name": "fzaninotto/faker",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fzaninotto/Faker.git",
+                "reference": "9f4ad8979821b9d0052656dffaabea035eed6c86"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/9f4ad8979821b9d0052656dffaabea035eed6c86",
+                "reference": "9f4ad8979821b9d0052656dffaabea035eed6c86",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Faker": "src/",
+                    "Faker\\PHPUnit": "test/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Zaninotto"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "time": "2013-12-17 09:29:03"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -1648,7 +1694,8 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
-        "way/generators": 20
+        "way/generators": 20,
+        "fzaninotto/faker": 20
     },
     "platform": [
 

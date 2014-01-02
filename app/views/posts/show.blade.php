@@ -1,1 +1,3 @@
-show.blade
+@section('content')
+	show.blade
+@stop
