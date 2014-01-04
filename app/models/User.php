@@ -13,6 +13,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $table = 'users';
 
 	/**
+	 * A 'black-list' of mass assignable attributes.
+	 *
+	 * @var array
+	 */
+	protected $guarded = array('id', 'password');
+
+	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
@@ -47,6 +54,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function getReminderEmail()
 	{
 		return $this->email;
+	}
+
+	public function full_name()
+	{
+		return $this->first_name . ' ' . $this->last_name;
+	}
+
+	public function posts()
+	{
+		return $this->hasMany('Post', 'author');
 	}
 
 }

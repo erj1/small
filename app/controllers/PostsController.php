@@ -46,7 +46,10 @@ class PostsController extends BaseController {
 	 */
 	public function show($id)
 	{
-        $this->layout->content = View::make('posts.show');
+		$post = Post::findOrFail($id);
+		$post->load('author');
+
+    $this->layout->content = View::make('posts.show', compact('post'));
 	}
 
 	/**

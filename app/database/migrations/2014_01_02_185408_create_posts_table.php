@@ -15,7 +15,8 @@ class CreatePostsTable extends Migration {
 		Schema::create('posts', function(Blueprint $table) {
 			$table->increments('id');
 			$table->string('title');
-			$table->date('published_at');
+			$table->text('content');
+			$table->date('published_at')->nullable()->default(null);
 			$table->integer('author')->unsigned();
 			$table->timestamps();
 			$table->softDeletes();
