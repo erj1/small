@@ -3,6 +3,9 @@
 @stop
 
 @section('content')
+	<div class="hang-right">
+		<a class="button" href="{{ URL::route('posts.create') }}">New Post</a>
+	</div>
 	@foreach(Post::with('author')->orderBy('published_at', 'desc')->get() as $post)
 		<article>
 			<header>

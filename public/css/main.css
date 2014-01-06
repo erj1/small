@@ -12,7 +12,7 @@ textarea {
     color: #333232;
 }
 body {
-    font-size: 1em;
+    font-size: 18px;
     line-height: 1.61803399;
 }
 
@@ -141,7 +141,7 @@ nav a:hover {
 
 .footer-container footer {
     color: white;
-    padding: 20px 0;
+    padding: 20px 0 0 0;
 }
 
 /* ===============
@@ -172,7 +172,8 @@ a {
     font-style: none;
     text-decoration: none;
 }
-a:hover {
+a:hover,
+input.link:hover {
     text-decoration: underline;
 }
 article h2 {
@@ -194,9 +195,48 @@ article h6 {
     font-weight: 200;
     color: #606060;
 }
-
-
-
+html, body {
+    height: 100%;
+}
+/* http://css-tricks.com/snippets/css/sticky-footer/ */
+.content-wrap {
+    min-height: 100%;
+    margin-bottom: -6.48em;
+}
+.content-wrap:after {
+    content: "";
+    display: block;
+}
+.footer-container, .content-wrap:after {
+    height: 6em;
+    padding: 0;
+}
+.button {
+    border: none;
+    margin: 0;
+    color: #FAFAFA;
+    font-family: Raleway, Helvetica Neue, Sans;
+    padding: 0.809017em;
+    background-color: #533D54;
+}
+.hang-right {
+    float: right;
+}
+label {
+    display: block;
+}
+label .error-message {
+    padding-left: 1em;
+}
+.error-message {
+    color: #AF1D07;
+}
+.danger {
+    background-color: #AF1D07;
+}
+.center-content {
+    text-align: center;
+}
 
 
 

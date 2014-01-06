@@ -1,5 +1,16 @@
 <?php
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
+App::error(function(ModelNotFoundException $e)
+{
+	if(!stristr($e->getMessage(), 'post' ) === FALSE) {
+		// return "Not Found.";
+		return Response::view('posts.404', array('message' => 'This post doesn\'t seem to exist.'), 404);
+	}
+	return App::abort(404);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -14,6 +25,38 @@
 Route::get('/', array('as' => 'home', function()
 {
 	return View::make('home');
+}));
+
+Route::get('login', array('as' => 'login', function()
+{
+	if(Input::has('errors'))
+		return View::make('login')->with('errors', Input::get('errors'));
+	return View::make('login');
+}));
+
+Route::post('login', function()
+{
+	$input = array(
+		'email' 		=> Input::get('email'),
+		'password'	=> Input::get('password'),
+		);
+	$validator = Validator::make($input, User::$loginRules);
+	if($validator->fails())
+		return View::make('login')->withErrors($validator);
+	// Normal login from here.
+	if(Auth::attempt(array('email' => $input['email'], 'password'	=> $input['password']), true)) {
+		return Redirect::intended('posts');
+	}
+	else {
+		$validator->messages()->add('auth', 'These credentials are invalid. Please try again.');
+		return View::make('login')->withErrors($validator);
+	}
+});
+
+Route::get('logout', array('as' => 'logout', function()
+{
+	Auth::logout();
+	return Redirect::route('home');
 }));
 
 Route::get('about', array('as' => 'about', function()

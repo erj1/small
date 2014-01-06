@@ -18,7 +18,7 @@
         <![endif]-->
     </head>
     <body>
-
+      <div class="content-wrap">
         <div class="header-container">
             <header class="wrapper clearfix">
                 <h1 class="title">@yield('title', 'Small')</h1>
@@ -37,6 +37,7 @@
                 @yield('content')
             </div> <!-- #main -->
         </div> <!-- #main-container -->
+      </div> <!-- .content-wrap -->
 
         <div class="footer-container">
             <footer class="wrapper">
