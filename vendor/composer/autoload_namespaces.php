@@ -7,7 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Whoops' => array($vendorDir . '/filp/whoops/src'),
-    'Way\\Generators' => array($vendorDir . '/way/generators/src'),
     'Symfony\\Component\\Translation\\' => array($vendorDir . '/symfony/translation'),
     'Symfony\\Component\\Routing\\' => array($vendorDir . '/symfony/routing'),
     'Symfony\\Component\\Process\\' => array($vendorDir . '/symfony/process'),
@@ -28,14 +27,11 @@ return array(
     'PHPParser' => array($vendorDir . '/nikic/php-parser/lib'),
     'Normalizer' => array($vendorDir . '/patchwork/utf8/class'),
     'Net' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
-    'Mustache' => array($vendorDir . '/mustache/mustache/src'),
     'Monolog' => array($vendorDir . '/monolog/monolog/src'),
     'Math' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
     'Jeremeamia\\SuperClosure' => array($vendorDir . '/jeremeamia/SuperClosure/src'),
     'Illuminate' => array($vendorDir . '/laravel/framework/src'),
     'File' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
-    'Faker\\PHPUnit' => array($vendorDir . '/fzaninotto/faker/test'),
-    'Faker' => array($vendorDir . '/fzaninotto/faker/src'),
     'Crypt' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
     'ClassPreloader' => array($vendorDir . '/classpreloader/classpreloader/src'),
     'Carbon' => array($vendorDir . '/nesbot/carbon/src'),
