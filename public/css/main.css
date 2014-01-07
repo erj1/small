@@ -237,7 +237,13 @@ label .error-message {
 .center-content {
     text-align: center;
 }
-
+footer a {
+    color: white;
+}
+.social-icons {
+    color: white;
+    float: right;
+}
 
 
 
@@ -250,6 +256,15 @@ label .error-message {
 /* ==========================================================================
    Media Queries
    ========================================================================== */
+
+@media only screen and (max-width: 768px) {
+    /* =================================
+        Fix for title on small screens.
+       ================================= */
+    .header-container h1 {
+        line-height: 0.809017;
+    }
+}
 
 @media only screen and (min-width: 480px) {
 
@@ -291,6 +306,7 @@ label .error-message {
 /* ============
     WIDE: Menu
    ============ */
+
 
     .title {
         float: left;

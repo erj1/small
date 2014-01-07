@@ -59,9 +59,4 @@ Route::get('logout', array('as' => 'logout', function()
 	return Redirect::route('home');
 }));
 
-Route::get('about', array('as' => 'about', function()
-{
-	return View::make('about');
-}));
-
 Route::resource('posts', 'PostsController');

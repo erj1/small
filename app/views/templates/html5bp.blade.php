@@ -18,6 +18,7 @@
         <![endif]-->
     </head>
     <body>
+      <!-- <a href="https://github.com/daytodayio/small"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a> -->
       <div class="content-wrap">
         <div class="header-container">
             <header class="wrapper clearfix">
@@ -41,7 +42,7 @@
 
         <div class="footer-container">
             <footer class="wrapper">
-                @yield('footer', '<h3>footer</h3>')
+                <p>Built on <a href="http://laravel.com">Laravel</a></p>
             </footer>
         </div>
 

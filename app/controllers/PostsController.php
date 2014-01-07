@@ -5,7 +5,7 @@ class PostsController extends BaseController {
 	/**
    * The layout that should be used for responses.
    */
-  protected $layout = 'templates.html5bp';
+  protected $layout = 'templates.bootstrap3';
 
   /**
    * Instantiate a new UserController instance.
@@ -23,7 +23,8 @@ class PostsController extends BaseController {
 	public function index()
 	{
 		// return View::make('posts.index');
-		$this->layout->content = View::make('posts.index');
+		$posts = Post::with('author')->orderBy('published_at', 'desc')->get();
+		$this->layout->content = View::make('posts.index', compact('posts'));
 	}
 
 	/**
