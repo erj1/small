@@ -60,3 +60,17 @@ Route::get('logout', array('as' => 'logout', function()
 }));
 
 Route::resource('posts', 'PostsController');
+
+/*
+ * ============================================================================
+ * Category Routes
+ * ============================================================================
+ */
+
+// Show posts for a specific category
+Route::get('posts/category/{category_id}/{category_slug?}',
+	'PostsController@category');
+
+// Category Resource Route (Admin)
+Route::resource('category', 'CategoryController',
+	array('only' => array('store')));

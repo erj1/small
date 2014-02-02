@@ -1,19 +1,22 @@
 <?php
 
-class PostsController extends BaseController {
+class PostsController extends BaseController
+{
+    /**
+     * The layout that should be used for responses.
+     */
+    protected $layout = 'templates.bootstrap3';
 
-	/**
-   * The layout that should be used for responses.
-   */
-  protected $layout = 'templates.bootstrap3';
-
-  /**
-   * Instantiate a new UserController instance.
-   */
-  public function __construct()
-  {
-  	$this->beforeFilter('auth', array('only' => array('create', 'edit', 'update', 'destroy')));
-  }
+    /**
+     * Instantiate a new UserController instance.
+     */
+    public function __construct()
+    {
+        $this->beforeFilter(
+            'auth',
+            array('only' => array('create', 'edit', 'update', 'destroy'))
+        );
+    }
 
 	/**
 	 * Display a listing of the resource.
@@ -24,7 +27,24 @@ class PostsController extends BaseController {
 	{
 		// return View::make('posts.index');
 		$posts = Post::with('author')->orderBy('published_at', 'desc')->get();
-		$this->layout->content = View::make('posts.index', compact('posts'));
+        $categories = Category::orderBy('name')->get();
+
+		$this->layout->content = View::make('posts.index', compact('posts', 'categories'));
+	}
+
+	public function category($category_id, $category_slug = '')
+	{
+		$category = Category::find($category_id);
+
+		if (!$category) App::abort(404);
+
+		$posts = $category->posts()->with('author')->orderBy('published_at', 'desc')->get();
+		$categories = Category::orderBy('name')->get();
+
+		$this->layout->content = View::make(
+			'posts.category',
+			compact('category', 'posts', 'categories')
+		);
 	}
 
 	/**
@@ -34,7 +54,9 @@ class PostsController extends BaseController {
 	 */
 	public function create()
 	{
-  	$this->layout->content = View::make('posts.create');
+  		$categories = Category::orderBy('name')->get()->lists('name', 'id');
+
+  		$this->layout->content = View::make('posts.create', compact('categories'));
 	}
 
 	/**
@@ -45,19 +67,23 @@ class PostsController extends BaseController {
 	public function store()
 	{
 		$input = array(
-			'author' 	=> Auth::user()->id,
-			'title' 	=> Input::get('title'),
-			'content'	=> Input::get('content'),
-			);
-		$validator = Validator::make($input, Post::$rules);
+			'author' 	  => Auth::user()->id,
+			'title' 	  => Input::get('title'),
+			'content'	  => Input::get('content'),
+			'category_id' => Input::get('category'),
+		);
+		
+        $validator = Validator::make($input, Post::$rules);
 
 		if( $validator->fails())
 			return Redirect::back()->withErrors($validator);
 		
 		$now = new DateTime;
-		Post::create(array_add(
+		
+        Post::create(array_add(
 			$input, 'published_at', $now->format('Y-m-d H:i:s')
-			));
+		));
+
 		return Redirect::route('posts.index');
 	}
 
@@ -69,10 +95,8 @@ class PostsController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$post = Post::findOrFail($id);
-		$post->load('author');
-
-    $this->layout->content = View::make('posts.show', compact('post'));
+		$post = Post::with('author')->findOrFail($id);
+        $this->layout->content = View::make('posts.show', compact('post'));
 	}
 
 	/**

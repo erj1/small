@@ -1,5 +1,5 @@
 @section('title')
-	Posts
+	{{{ $category->name }}} Posts
 @stop
 
 @section('content')
@@ -17,24 +17,34 @@
 			{{-- List Categories Here --}}
 			<div id="categoryList" class="list-group">
 
-				<a href="#" class="list-group-item active">All</a>
+				<a href="{{ url('posts') }}" class="list-group-item">All</a>
 				
-				@foreach($categories as $category)
+				@foreach($categories as $c)
+
+					@if ($c->id === $category->id)
+
+					<a href="#" class="list-group-item active">
+
+					@else
 
 					<a href="{{ URL::action(
 						'PostsController@category', array(
-							'category_id' => $category->id,
-							'category_slug' => $category->slug
+							'category_id' => $c->id,
+							'category_slug' => $c->slug
 						)
 					) }}" class="list-group-item">
-						<span class="badge">{{ $category->posts->count() }}</span>
-						{{{ $category->name }}}
+
+					@endif
+						<span class="badge">{{ $c->posts->count() }}</span>
+						{{{ $c->name }}}
 					</a>
 				@endforeach
 			</div>
 		</div>
 		
 		<div class="col-sm-9">
+
+		@if ($posts->count() > 0)
 
 			{{-- List Posts Here --}}
 			@foreach($posts as $post)
@@ -58,6 +68,15 @@
 			
 			@endforeach
 
+		@else
+
+			<div class="alert alert-info">
+				<strong>No Posts Available</strong>
+				<p>Oops! We&apos;re sorry but we don't have any posts within this category.</p>
+				<p>Please select another category.</p>
+			</div>
+
+		@endif
 		</div>
 
 	</div>

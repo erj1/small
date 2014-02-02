@@ -21,6 +21,9 @@
         color: #C13F3A;
       }
     </style>
+    <script type="text/javascript">
+      var baseURL = '{{ url('/') }}';
+    </script>
   </head>
   <body>
     <header>
@@ -43,10 +46,8 @@
       </nav>
     </header>
     <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
+      <div class="page-header">
           <h1>@yield('title', '')</h1>
-        </div>
       </div>
     </div>
 
@@ -56,5 +57,10 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{ URL::asset('packages/bootstrap-3.0.3/js/bootstrap.min.js') }}"></script>
+
+    @section('javascript')
+      {{-- Enter any page specific JavaScript here --}}
+    @show
+    
   </body>
 </html>
