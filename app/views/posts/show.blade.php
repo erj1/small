@@ -22,7 +22,6 @@
 					<h3 class="lighter">
 						{{ $post->getAuthorName() }} on 
 						{{ $post->published_at->toFormattedDateString() }}
-						in {{{ $post->category->name }}}
 					</h3>
 				</header>
 				<section>

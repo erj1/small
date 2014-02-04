@@ -12,8 +12,7 @@ class Post extends Eloquent {
 	public static $rules = array(
 		'author'	  => 'required|exists:users,id',
 		'title'		  => 'required',
-		'content'	  => 'required',
-		'category_id' => 'required|integer|exists:categories,id'
+		'content'	  => 'required'
 	);
 
 	public function getSummary($length = 140)
@@ -29,19 +28,7 @@ class Post extends Eloquent {
 	{
 		return $this->belongsTo('User', 'author');
 	}
-
-	/**
-	 * Category
-	 *
-	 * Provides the category that this post was put within.
-	 *
-	 * @return Category
-	 */
-	public function category()
-	{
-		return $this->belongsTo('Category');
-	}
-
+	
 	public function getAuthorName()
 	{
 		return $this->author()->first()->full_name();

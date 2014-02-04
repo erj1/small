@@ -27,24 +27,8 @@ class PostsController extends BaseController
 	{
 		// return View::make('posts.index');
 		$posts = Post::with('author')->orderBy('published_at', 'desc')->get();
-        $categories = Category::orderBy('name')->get();
-
-		$this->layout->content = View::make('posts.index', compact('posts', 'categories'));
-	}
-
-	public function category($category_id, $category_slug = '')
-	{
-		$category = Category::find($category_id);
-
-		if (!$category) App::abort(404);
-
-		$posts = $category->posts()->with('author')->orderBy('published_at', 'desc')->get();
-		$categories = Category::orderBy('name')->get();
-
-		$this->layout->content = View::make(
-			'posts.category',
-			compact('category', 'posts', 'categories')
-		);
+        
+		$this->layout->content = View::make('posts.index', compact('posts'));
 	}
 
 	/**
@@ -54,9 +38,7 @@ class PostsController extends BaseController
 	 */
 	public function create()
 	{
-  		$categories = Category::orderBy('name')->get()->lists('name', 'id');
-
-  		$this->layout->content = View::make('posts.create', compact('categories'));
+  		$this->layout->content = View::make('posts.create');
 	}
 
 	/**
@@ -69,8 +51,7 @@ class PostsController extends BaseController
 		$input = array(
 			'author' 	  => Auth::user()->id,
 			'title' 	  => Input::get('title'),
-			'content'	  => Input::get('content'),
-			'category_id' => Input::get('category'),
+			'content'	  => Input::get('content')
 		);
 		
         $validator = Validator::make($input, Post::$rules);
@@ -113,7 +94,7 @@ class PostsController extends BaseController
 		}
 		// Normal logic from here.
 		$post = Post::findOrFail($id);
-    $this->layout->content = View::make('posts.edit', compact('post'));
+    	$this->layout->content = View::make('posts.edit', compact('post'));
 	}
 
 	/**

@@ -20,22 +20,16 @@
 
 				{{-- Post Category --}}
 				<div class="form-group">
-					{{ Form::label('category', 'Category', array('class' => 'control-label')) }}
-					{{ Form::select(
-						'category', // name
-						$categories, // options
-						'1', // default value
-						array(
-							'id' => 'category',
-							'class' => 'form-control',
-							'placeholder' => 'Post Category'
-						) // attributes
-					) }}
+					
+					{{-- # place the post category dropdown here --}}
+
+					{{-- Uncomment
 					<p class="help-block">
 						<a href="#" data-toggle="modal" data-target="#categoryNameModal">
 							Add New Category
 						</a>
 					</p>
+					--}}
 				</div>
 
 				{{ Form::submit('Create', array('class' => 'btn btn-primary')) }}
